@@ -102,10 +102,6 @@ export class HeartRateDisplay {
 		0: sensor => `on=${sensor.on}, aodActive=${sensor.aodActive}`
 	})
 	private onDisplayChanged(sensor: Display) {
-		if (sensor.aodAvailable && sensor.aodAllowed) {
-			requestAnimationFrame(() => this.$container.animate(sensor.aodActive ? 'unload' : 'load'));
-		}
-
 		this.updateState();
 	}
 
@@ -123,7 +119,11 @@ export class HeartRateDisplay {
 	@defer()
 	@log('HeartRateDisplay')
 	private render() {
-		const rate = this._rate ?? this.heartRateSensor?.heartRate ?? 0;
+		let rate = this._rate;
+		if (rate == null) {
+			const timestamp = this.heartRateSensor?.activated ? this.heartRateSensor?.timestamp ?? 0 : 0;
+			rate = timestamp > 0 ? this.heartRateSensor?.heartRate ?? 0 : 0;
+		}
 
 		this.$rate.text = `${rate > 0 ? rate : '--'}`;
 		this.$restingRate.text = `${this._hasUserProfileAccess ? user.restingHeartRate ?? '' : ''}`;
