@@ -40,6 +40,7 @@ function PureSettings(props: SettingsComponentProps) {
 				}
 			>
 				<Toggle settingsKey="showBatteryPercentage" label="Show Percentage" />
+				<Toggle settingsKey="showBatteryIcon" label="Show Battery Icon" />
 			</Section>
 			<Section
 				title={

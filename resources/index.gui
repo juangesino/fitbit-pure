@@ -3,7 +3,7 @@
 
 	<g id="top-bar">
 		<g id="battery-display">
-			<image id="battery-icon" href="images/battery-100.png" class="icon primary" x="10" y="-2" />
+			<image id="battery-icon" href="images/battery-100.png" class="icon primary" x="10" y="-2" display="none" />
 			<text id="battery-level" class="text--small text--bold primary" text-anchor="start" text-length="4" x="52" y="21" />
 		</g>
 
